@@ -15,7 +15,7 @@ void Timer_Init (void)
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
 	TIM_TimeBaseInitStruct.TIM_ClockDivision =  TIM_CKD_DIV1;
 	TIM_TimeBaseInitStruct.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInitStruct.TIM_Period = 2000 - 1;   /* 100ms 采样一次，便于调试 */
+	TIM_TimeBaseInitStruct.TIM_Period = 10 - 1;   /* 100ms 采样一次，便于调试 */
 	TIM_TimeBaseInitStruct.TIM_Prescaler = 7200 - 1;
 	TIM_TimeBaseInitStruct.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM2,&TIM_TimeBaseInitStruct);
@@ -43,16 +43,17 @@ void TIM2_IRQHandler(void)
         static uint16_t cnt = 0;
 
         cnt++;
+	if(cnt >= sample_period)
+	{
+		cnt = 0;
 
-        if(cnt >= sample_period)
-        {
-            cnt = 0;
+		uint16_t raw = ADC_Read();   // 原始数据
+		adc_value = Filter_MovingAverage(raw); // 滤波后数据
 
-            adc_value = ADC_Read();
-            voltage = adc_value * 3.3 / 4095;
+		voltage = adc_value * 3.3 / 4095;
 
-            data_ready = 1;
-        }
+		data_ready = 1;
+	}
 
         TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
     }
