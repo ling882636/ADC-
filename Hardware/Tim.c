@@ -2,7 +2,7 @@
 #include "ADC.h"
 #include "Filter.h"
 
-extern volatile uint16_t adc_value;
+
 volatile uint16_t sample_period = 100; // 默认100ms
 volatile uint8_t data_ready;
 float voltage;
@@ -35,7 +35,7 @@ void Timer_Init (void)
 	
 }
 
-
+/*
 void TIM2_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM2, TIM_IT_Update) == SET)
@@ -58,3 +58,4 @@ void TIM2_IRQHandler(void)
         TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
     }
 }
+*/

@@ -7,7 +7,8 @@ int main(void)
 {
     ADC1_Init();
     Serial_Init();
-
+	MY_DMA_Init();
+	DMA_NVIC_Init();
 
 while(1)
 {
