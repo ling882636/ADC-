@@ -1,5 +1,5 @@
 #include "stm32f10x.h"        // Device header
-#include "ADC.h"
+
 #include "Filter.h"
 
 

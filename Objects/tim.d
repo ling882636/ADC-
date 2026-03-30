@@ -28,5 +28,4 @@
 .\objects\tim.o: .\Library\stm32f10x_usart.h
 .\objects\tim.o: .\Library\stm32f10x_wwdg.h
 .\objects\tim.o: .\Library\misc.h
-.\objects\tim.o: Hardware\ADC.h
 .\objects\tim.o: .\Algorithm\Filter.h

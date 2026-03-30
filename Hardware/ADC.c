@@ -1,11 +1,10 @@
 #include "stm32f10x.h"
-
-#define ADC_BUF_SIZE 100
-
+#include "stdio.h"
+#include "ADC.h"
 uint16_t adc_buffer[ADC_BUF_SIZE];
 
-volatile uint8_t dma_half_flag = 0;
-volatile uint8_t dma_full_flag = 0;
+volatile uint16_t dma_half_flag = 0;
+volatile uint16_t dma_full_flag = 0;
 
 void MY_DMA_Init(void)
 {
@@ -52,15 +51,17 @@ void DMA1_Channel1_IRQHandler(void)
     // 半缓冲完成
     if(DMA_GetITStatus(DMA1_IT_HT1))
     {
-        dma_half_flag = 1;
+
         DMA_ClearITPendingBit(DMA1_IT_HT1);
+		dma_half_flag++;
     }
 
     // 全缓冲完成
     if(DMA_GetITStatus(DMA1_IT_TC1))
     {
-        dma_full_flag = 1;
+
         DMA_ClearITPendingBit(DMA1_IT_TC1);
+		dma_full_flag++;
     }
 }
 
@@ -106,4 +107,6 @@ void ADC1_Init(void)
     /* 启动转换 */
     ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 }
+
+int err_count = 0;
 

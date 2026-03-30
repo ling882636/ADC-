@@ -28,3 +28,5 @@
 .\objects\adc.o: .\Library\stm32f10x_usart.h
 .\objects\adc.o: .\Library\stm32f10x_wwdg.h
 .\objects\adc.o: .\Library\misc.h
+.\objects\adc.o: D:\51keil\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\adc.o: Hardware\ADC.h
