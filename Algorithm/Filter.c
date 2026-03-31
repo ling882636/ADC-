@@ -1,7 +1,6 @@
 #include "stm32f10x.h"
 #include <stdint.h>
 #include <string.h>
-
 /**
  * @brief  平均值滤波（安全版，防异常输入）
  * @param  buf: 数据缓冲区指针
@@ -89,3 +88,12 @@ uint16_t Filter_MovingAverage(uint16_t new_value)
     return sum / FILTER_SIZE;
 }
 
+#define ALPHA 0.1  // 控制滤波器的平滑程度，0 < ALPHA < 1
+
+
+uint16_t low_pass_filter(uint16_t input)
+{
+	static uint16_t last_value = 0;  // 用于存储前一个输出
+    last_value = (uint16_t)(ALPHA * input + (1 - ALPHA) * last_value);
+    return last_value;
+}

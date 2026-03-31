@@ -3,9 +3,17 @@
 #include "ADC.h"
 #include "Serial.h"
 #include "systick.h"
+#include "Filter.h"
 
-static uint32_t last_tick = 0;
-static uint16_t max_half_flag = 0;
+uint32_t last_tick = 0;
+void process_adc_data(void)
+{
+    uint16_t filtered_data = low_pass_filter(adc_buffer[0]);
+
+    // 你可以在这里对 `filtered_data` 进行其他处理
+    printf("Filtered Value: %d\n", filtered_data);
+}
+
 int main(void)
 {
     ADC1_Init();
@@ -14,28 +22,26 @@ int main(void)
     DMA_NVIC_Init();
     SysTick_Init();  
 
-while(1)
-{
-    // ✅ 先观测（关键）
-    if(dma_half_flag > max_half_flag)
-        max_half_flag = dma_half_flag;
-
-    // -------- 半缓冲 --------
-    if(dma_half_flag)
+    while(1)
     {
-        dma_half_flag--;
-
-        if(sys_tick - last_tick >= 10)
+        // -------- 半缓冲 --------
+        if (dma_half_flag)
         {
-            last_tick = sys_tick;
-            printf("%d\n", adc_buffer[0]);
+            dma_half_flag = 0;
+
+            // 处理半缓冲数据
+			if(sys_tick - last_tick >= 50)
+            {	
+				process_adc_data();
+			}
+        }
+
+        // -------- 全缓冲 --------
+        if (dma_full_flag)
+        {
+            dma_full_flag = 0;
+
+            // 处理全缓冲数据（如果需要）
         }
     }
-
-    // -------- 全缓冲 --------
-    if(dma_full_flag)
-    {
-        dma_full_flag--;
-    }
-}
 }

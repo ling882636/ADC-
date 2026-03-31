@@ -32,3 +32,4 @@
 .\objects\main.o: .\Hardware\ADC.h
 .\objects\main.o: .\Hardware\Serial.h
 .\objects\main.o: .\Hardware\systick.h
+.\objects\main.o: .\Algorithm\Filter.h

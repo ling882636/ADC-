@@ -51,17 +51,15 @@ void DMA1_Channel1_IRQHandler(void)
     // 半缓冲完成
     if(DMA_GetITStatus(DMA1_IT_HT1))
     {
-
+		dma_half_flag = 1;
         DMA_ClearITPendingBit(DMA1_IT_HT1);
-		dma_half_flag++;
     }
 
     // 全缓冲完成
     if(DMA_GetITStatus(DMA1_IT_TC1))
     {
-
+		dma_full_flag = 1;
         DMA_ClearITPendingBit(DMA1_IT_TC1);
-		dma_full_flag++;
     }
 }
 
@@ -108,5 +106,5 @@ void ADC1_Init(void)
     ADC_SoftwareStartConvCmd(ADC1, ENABLE);
 }
 
-int err_count = 0;
+
 
