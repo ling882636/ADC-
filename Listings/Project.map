@@ -1425,9 +1425,9 @@ Image Symbol Table
     fputc                                    0x08001c27   Thumb Code    16  serial.o(i.fputc)
     low_pass_filter                          0x08001c39   Thumb Code    70  filter.o(i.low_pass_filter)
     main                                     0x08001c95   Thumb Code    66  main.o(i.main)
-    process_adc_data                         0x08001ce9   Thumb Code    22  main.o(i.process_adc_data)
-    Region$$Table$$Base                      0x08001d18   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08001d38   Number         0  anon$$obj.o(Region$$Table)
+    process_adc_data                         0x08001ce9   Thumb Code    26  main.o(i.process_adc_data)
+    Region$$Table$$Base                      0x08001d10   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001d30   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000004   Data          16  system_stm32f10x.o(.data)
     Serial_RxData                            0x2000002c   Data           1  serial.o(.data)
@@ -1451,9 +1451,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001d78, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001d70, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001d38, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001d30, Max: 0x00010000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1550,22 +1550,22 @@ Memory Map of the image
     0x08001c36   0x08001c36   0x00000002   PAD
     0x08001c38   0x08001c38   0x0000005c   Code   RO         3294    i.low_pass_filter   filter.o
     0x08001c94   0x08001c94   0x00000054   Code   RO         3713    i.main              main.o
-    0x08001ce8   0x08001ce8   0x00000030   Code   RO         3714    i.process_adc_data  main.o
-    0x08001d18   0x08001d18   0x00000020   Data   RO         4122    Region$$Table       anon$$obj.o
+    0x08001ce8   0x08001ce8   0x00000028   Code   RO         3714    i.process_adc_data  main.o
+    0x08001d10   0x08001d10   0x00000020   Data   RO         4122    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001d38, Size: 0x00000548, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001d30, Size: 0x00000548, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08001d38   0x00000014   Data   RW           28    .data               system_stm32f10x.o
-    0x20000014   0x08001d4c   0x00000014   Data   RW         1805    .data               stm32f10x_rcc.o
-    0x20000028   0x08001d60   0x00000004   Data   RW         3296    .data               filter.o
-    0x2000002c   0x08001d64   0x00000004   Data   RW         3523    .data               serial.o
-    0x20000030   0x08001d68   0x00000004   Data   RW         3658    .data               adc.o
-    0x20000034   0x08001d6c   0x00000004   Data   RW         3695    .data               systick.o
-    0x20000038   0x08001d70   0x00000004   Data   RW         3715    .data               main.o
-    0x2000003c   0x08001d74   0x00000004   Data   RW         4100    .data               mc_w.l(stdout.o)
+    0x20000000   0x08001d30   0x00000014   Data   RW           28    .data               system_stm32f10x.o
+    0x20000014   0x08001d44   0x00000014   Data   RW         1805    .data               stm32f10x_rcc.o
+    0x20000028   0x08001d58   0x00000004   Data   RW         3296    .data               filter.o
+    0x2000002c   0x08001d5c   0x00000004   Data   RW         3523    .data               serial.o
+    0x20000030   0x08001d60   0x00000004   Data   RW         3658    .data               adc.o
+    0x20000034   0x08001d64   0x00000004   Data   RW         3695    .data               systick.o
+    0x20000038   0x08001d68   0x00000004   Data   RW         3715    .data               main.o
+    0x2000003c   0x08001d6c   0x00000004   Data   RW         4100    .data               mc_w.l(stdout.o)
     0x20000040        -       0x00000040   Zero   RW         3522    .bss                serial.o
     0x20000080        -       0x000000c8   Zero   RW         3657    .bss                adc.o
     0x20000148        -       0x00000400   Zero   RW            1    STACK               startup_stm32f10x_md.o
@@ -1581,7 +1581,7 @@ Image component sizes
        354         30          0          4        200       2826   adc.o
          0          0          0          0          0       4500   core_cm3.o
         92         22          0          4          0       1193   filter.o
-       132         44          0          4          0       1178   main.o
+       124         32          0          4          0       1194   main.o
        132         22          0          0          0     213839   misc.o
        368         32          0          4         64       4862   serial.o
         36          8        236          0       1024        820   startup_stm32f10x_md.o
@@ -1595,7 +1595,7 @@ Image component sizes
         96         12          0          4          0      16249   systick.o
 
     ----------------------------------------------------------------------
-      3482        276        268         60       1288     352352   Object Totals
+      3474        264        268         60       1288     352368   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          0          0          0          0   (incl. Padding)
 
@@ -1651,15 +1651,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7212        382        268         64       1288     350776   Grand Totals
-      7212        382        268         64       1288     350776   ELF Image Totals
-      7212        382        268         64          0          0   ROM Totals
+      7204        370        268         64       1288     350792   Grand Totals
+      7204        370        268         64       1288     350792   ELF Image Totals
+      7204        370        268         64          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 7480 (   7.30kB)
+    Total RO  Size (Code + RO Data)                 7472 (   7.30kB)
     Total RW  Size (RW Data + ZI Data)              1352 (   1.32kB)
-    Total ROM Size (Code + RO Data + RW Data)       7544 (   7.37kB)
+    Total ROM Size (Code + RO Data + RW Data)       7536 (   7.36kB)
 
 ==============================================================================
 

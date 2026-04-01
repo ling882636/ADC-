@@ -8,10 +8,10 @@
 uint32_t last_tick = 0;
 void process_adc_data(void)
 {
-    uint16_t filtered_data = low_pass_filter(adc_buffer[0]);
+    uint16_t raw = adc_buffer[0];
+    uint16_t filtered = low_pass_filter(raw);
 
-    // 你可以在这里对 `filtered_data` 进行其他处理
-    printf("Filtered Value: %d\n", filtered_data);
+    printf("%d,%d\n", raw, filtered);
 }
 
 int main(void)
