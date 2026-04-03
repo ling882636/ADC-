@@ -14,5 +14,4 @@ extern volatile uint16_t dma_full_flag;
 void MY_DMA_Init(void);
 void DMA_NVIC_Init(void);
 void ADC1_Init(void);
-
 #endif

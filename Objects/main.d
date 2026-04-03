@@ -31,5 +31,5 @@
 .\objects\main.o: D:\51keil\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: .\Hardware\ADC.h
 .\objects\main.o: .\Hardware\Serial.h
-.\objects\main.o: .\Hardware\systick.h
-.\objects\main.o: .\Algorithm\Filter.h
+.\objects\main.o: .\Hardware\SysTick.h
+.\objects\main.o: .\System\Task.h

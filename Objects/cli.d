@@ -32,5 +32,7 @@
 .\objects\cli.o: .\Library\misc.h
 .\objects\cli.o: .\Hardware\LED.h
 .\objects\cli.o: .\Hardware\Dht11.h
+.\objects\cli.o: System\Task.h
+.\objects\cli.o: .\Algorithm\Filter.h
 .\objects\cli.o: D:\51keil\ARM\ARMCC\Bin\..\include\string.h
 .\objects\cli.o: D:\51keil\ARM\ARMCC\Bin\..\include\stdio.h

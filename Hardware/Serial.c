@@ -217,15 +217,14 @@ void USART1_IRQHandler(void)
 			return;
 		}
 
-		if(data == '\r')
+		if(data == '\r' || data == '\n')
 		{
-			rx_buffer[rx_index] = '\0';
-			cmd_flag = 1;
-			rx_index = 0;
-		}
-		else if(data == '\n')
-		{
-			// 忽略
+			if (rx_index > 0)  // 确保有数据
+			{
+				rx_buffer[rx_index] = '\0';
+				cmd_flag = 1;
+				rx_index = 0;
+			}
 		}
 		else
 		{

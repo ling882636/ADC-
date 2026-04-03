@@ -88,12 +88,26 @@ uint16_t Filter_MovingAverage(uint16_t new_value)
     return sum / FILTER_SIZE;
 }
 
-#define ALPHA 0.1  // 控制滤波器的平滑程度，0 < ALPHA < 1
+static float g_alpha = 0.1f;  // 控制滤波器的平滑程度，0 < g_alpha < 1
 
+void Filter_SetAlpha(float alpha)
+{
+    if (alpha <= 0.0f)
+        alpha = 0.01f;
+    else if (alpha >= 1.0f)
+        alpha = 0.99f;
+
+    g_alpha = alpha;
+}
+
+float Filter_GetAlpha(void)
+{
+    return g_alpha;
+}
 
 uint16_t low_pass_filter(uint16_t input)
 {
-	static uint16_t last_value = 0;  // 用于存储前一个输出
-    last_value = (uint16_t)(ALPHA * input + (1 - ALPHA) * last_value);
+    static uint16_t last_value = 0;  // 用于存储前一个输出
+    last_value = (uint16_t)(g_alpha * input + (1.0f - g_alpha) * last_value);
     return last_value;
 }
